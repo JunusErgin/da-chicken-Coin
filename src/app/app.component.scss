@@ -1,0 +1,18 @@
+mat-toolbar {
+    background-color: #1A2336;
+}
+
+.layout-left {
+    min-width: 25%;
+}
+
+.layout-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-right-bottom {
+    display: flex;
+    flex: 1;
+}

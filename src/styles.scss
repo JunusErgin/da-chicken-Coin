@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #161b2c;
+    color: white;
+}
+
+.d-flex {
+    display: flex;
+}
+
+mat-card {
+    background: #1A2336 !important;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}

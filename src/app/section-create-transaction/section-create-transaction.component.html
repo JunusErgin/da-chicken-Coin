@@ -1,0 +1,36 @@
+<h2>Transaktionen</h2>
+
+
+<div class="space-between first-row">
+    <mat-form-field appearance="fill">
+        <mat-label>Wer</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let user of users" [value]="user">
+                {{ user }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Ziel</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let user of users" [value]="user">
+                {{ user }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="space-between second-row">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Betrag</mat-label>
+        <input matInput placeholder="Betrag">
+        <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary">Abschicken</button>
+
+</div>
