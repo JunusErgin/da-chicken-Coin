@@ -32,4 +32,7 @@ mat-toolbar {
 
 .layout-right-top {
     display: flex;
+    @media (max-width: 850px) {
+        flex-direction: column;
+    }
 }
