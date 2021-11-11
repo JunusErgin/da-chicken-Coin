@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlockchainService } from '../services/blockchain.service';
 
 @Component({
   selector: 'app-section-create-transaction',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionCreateTransactionComponent implements OnInit {
   users = ['Manuel', 'Junus', 'Mihai', 'Anil', 'Markus', 'Linus'];
-  constructor() { }
+  constructor(private blockchainService: BlockchainService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

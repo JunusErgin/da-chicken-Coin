@@ -1,0 +1,17 @@
+:host {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+code {
+    margin-bottom: 16px;
+}
+
+.logging-container {
+    height: 50%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

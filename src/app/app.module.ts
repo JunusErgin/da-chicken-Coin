@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SectionLastTransactionsComponent } from './section-last-transactions/section-last-transactions.component';
 import { SectionDataComponent } from './section-data/section-data.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SectionLogComponent } from './section-log/section-log.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgChartsModule } from 'ng2-charts';
     SectionBlocksComponent,
     SectionCreateTransactionComponent,
     SectionLastTransactionsComponent,
-    SectionDataComponent
+    SectionDataComponent,
+    SectionLogComponent
   ],
   imports: [
     BrowserModule,

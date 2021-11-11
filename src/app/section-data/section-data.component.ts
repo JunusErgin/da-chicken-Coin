@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-var Chart;
-
 @Component({
   selector: 'app-section-data',
   templateUrl: './section-data.component.html',

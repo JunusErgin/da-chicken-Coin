@@ -1,0 +1,3 @@
+<div class="logging-container">
+    <code *ngFor="let log of (ls.logs | async).reverse()">[{{ log.node }}] {{ log.msg }}</code>
+</div>
