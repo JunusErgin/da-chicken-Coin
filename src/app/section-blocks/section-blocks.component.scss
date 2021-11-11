@@ -5,3 +5,9 @@
     height: calc(100vh - 128px);
     flex-direction: column;
 }
+
+mat-card {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

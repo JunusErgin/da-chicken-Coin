@@ -1,0 +1,13 @@
+<h2>Nodes</h2>
+
+
+
+<div class="node-row" *ngFor="let node of nodes">
+    <button mat-mini-fab color="accent" (click)="node.toggle()">
+        <mat-icon>{{ node.isMining ? 'pause' : 'play_arrow' }}</mat-icon>
+      </button>
+
+    <div class="node-info">
+        Node {{ node.id }} - {{ node.name }}
+    </div>
+</div>

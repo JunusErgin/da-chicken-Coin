@@ -11,9 +11,6 @@ export class SectionLogComponent implements OnInit {
   constructor(public ls: LoggingService) { }
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.ls.log('Node 1', 'Block wurde gefunden');
-    }, 5000);
   }
 
 }

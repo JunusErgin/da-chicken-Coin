@@ -2,6 +2,7 @@
     display: flex;
     padding: 32px;
     flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -9,6 +10,7 @@
     @media (max-width: 850px) {
         flex-direction: column;
     }
+    margin-bottom: 16px;
 }
 
 .second-row {
@@ -23,4 +25,17 @@
             height: 48px;
         }
     }
+}
+
+.who {
+    margin-right: 32px;
+}
+
+mat-form-field,
+button {
+    width: 45%;
+}
+
+button {
+    height: 48px;
 }

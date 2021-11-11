@@ -16,6 +16,10 @@ body {
     display: flex;
 }
 
+.money-text-field .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
 mat-card {
     background: #1A2336 !important;
 }

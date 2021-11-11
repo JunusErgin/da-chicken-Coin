@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlockchainService } from '../services/blockchain.service';
 
 @Component({
   selector: 'app-section-blocks',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionBlocksComponent implements OnInit {
 
-  constructor() { }
+  constructor(public bcs: BlockchainService) { }
 
   ngOnInit(): void {
   }

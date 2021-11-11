@@ -2,7 +2,7 @@
 
 
 <div class="space-between first-row">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="who">
         <mat-label>Wer</mat-label>
         <mat-select>
             <mat-option *ngFor="let user of users" [value]="user">
@@ -24,7 +24,7 @@
 
 <div class="space-between second-row">
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="money-text-field">
         <mat-label>Betrag</mat-label>
         <input matInput placeholder="Betrag">
         <mat-icon matSuffix>attach_money</mat-icon>
