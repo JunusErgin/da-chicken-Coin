@@ -5,6 +5,22 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.first-row {
+    @media (max-width: 850px) {
+        flex-direction: column;
+    }
+}
+
 .second-row {
     align-items: center;
+    @media (max-width: 850px) {
+        flex-direction: column;
+        mat-form-field,
+        button {
+            width: 100%;
+        }
+        button {
+            height: 48px;
+        }
+    }
 }

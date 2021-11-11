@@ -16,7 +16,16 @@ export class SectionDataComponent implements OnInit, AfterViewInit {
   barChartPlugins = [];
 
   barChartData = [
-    { data: [45, 37, 60, 70, 46, 33], label: 'Vermögen' }
+    {
+      data: [45, 37, 60, 70, 46, 33], label: 'Vermögen',
+      backgroundColor: [
+        '#ff6384',
+        '#36a2eb',
+        '#cc65fe',
+        '#ffce56'
+      ]
+    },
+
   ];
 
   constructor() {
@@ -25,9 +34,9 @@ export class SectionDataComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(){
-    
-  
+  ngAfterViewInit() {
+
+
 
 
 

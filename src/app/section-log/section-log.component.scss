@@ -2,6 +2,10 @@
     padding: 32px;
     display: flex;
     flex-direction: column;
+    min-width: 350px;
+    @media (max-width: 850px) {
+        min-width: unset;
+    }
 }
 
 code {
@@ -9,7 +13,7 @@ code {
 }
 
 .logging-container {
-    height: 50%;
+    height: 250px;
     overflow: auto;
     display: flex;
     flex-direction: column;

@@ -1,5 +1,15 @@
 mat-toolbar {
-    background-color: #1A2336;
+    background-color: #1a2336;
+}
+
+.layout-main {
+    display: flex;
+    @media (max-width: 1450px) {
+        flex-direction: column-reverse;
+        app-section-blocks {
+            height: unset !important;
+        }
+    }
 }
 
 .layout-left {
@@ -15,4 +25,7 @@ mat-toolbar {
 .layout-right-bottom {
     display: flex;
     flex: 1;
+    @media (max-width: 850px) {
+        flex-direction: column;
+    }
 }
