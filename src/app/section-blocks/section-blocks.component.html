@@ -1,11 +1,11 @@
 <h2>Anzeige Blöcke</h2>
 
-<mat-card *ngFor="let block of (bcs.blockchain | async).chain">
-    <h3>Letzter Block</h3>
+<mat-card *ngFor="let block of (bcs.blockchain | async).chain.reverse()">
+    <!-- <h3>Letzter Block</h3> -->
 
     <code>
         timestamp: {{ block.timestamp }} <br>
-        data: {{ block.printData() }} <br>
+        data: <span [title]="block.printData()"> {{ block.printData() }}</span> <br>
         prevhash: <span [title]="block.previousHash">  {{ block.previousHash }} </span><br>
         hash:  <span [title]="block.hash"> {{ block.hash }} </span><br>
         nonce: {{ block.nonce }} <br>

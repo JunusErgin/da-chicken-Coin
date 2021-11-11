@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Block } from '../models/block.class';
 import { BlockchainService } from '../services/blockchain.service';
 
 @Component({
@@ -8,10 +9,21 @@ import { BlockchainService } from '../services/blockchain.service';
 })
 export class SectionCreateTransactionComponent implements OnInit {
   users = ['Manuel', 'Junus', 'Mihai', 'Anil', 'Markus', 'Linus'];
+  from = 'Manuel';
+  to = 'Junus';
+  amount = 0;
+
+
   constructor(private blockchainService: BlockchainService) { }
 
   ngOnInit(): void {
     
+  }
+
+  addTransaction(){
+    console.log('Adding transaction', this.from, this.to);
+    let transaction = { from: this.from, to: this.to, amount: this.amount };
+    this.blockchainService.addTransaction(transaction);
   }
 
 }

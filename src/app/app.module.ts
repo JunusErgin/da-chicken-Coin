@@ -18,6 +18,7 @@ import { SectionDataComponent } from './section-data/section-data.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SectionLogComponent } from './section-log/section-log.component';
 import { SectionNodesComponent } from './section-nodes/section-nodes.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SectionNodesComponent } from './section-nodes/section-nodes.component';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    NgChartsModule
+    NgChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

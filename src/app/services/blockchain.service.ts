@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Block } from '../models/block.class';
 import { Blockchain } from '../models/blockchain.class';
 import { LoggingService } from './logging.service';
 
@@ -14,7 +15,14 @@ export class BlockchainService {
   }
 
   createBlockchain() {
-    this.blockchain.next(new Blockchain());
+    this.blockchain.next(new Blockchain(this.ls));
     this.ls.log('System', 'Neue Blockchain wurde erstellt.');
+  }
+
+  addTransaction(transaction){
+    let block = new Block(Date.now(), transaction);
+    let blockChain = this.blockchain.getValue();
+    console.log('Created new block', block);
+    blockChain.addBlock(block);
   }
 }

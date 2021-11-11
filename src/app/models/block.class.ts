@@ -14,10 +14,18 @@ export class Block {
     }
 
     getHash() {
-        return shajs('sha256').update(this.previousHash + this.timestamp + JSON.stringify(this.data)).digest('hex');
+        return shajs('sha256').update(this.previousHash + this.timestamp + JSON.stringify(this.data)  + this.nonce).digest('hex');
     }
 
     printData(){
         return JSON.stringify(this.data);
+    }
+
+
+    mine(difficulty) {
+        while (!this.hash.startsWith(Array(difficulty + 1).join('0'))) {
+            this.nonce++;
+            this.hash = this.getHash();
+        }
     }
 }

@@ -1,9 +1,12 @@
+import { LoggingService } from "../services/logging.service";
 import { Block } from "./block.class";
 
 export class Blockchain {
     chain: Array<any>;
-
-    constructor() {
+    difficulty = 3; // Not higher than 5
+    loggingService: LoggingService;
+    constructor(loggingService) {
+        this.loggingService = loggingService;
         this.chain = [new Block(Date.now())];
     }
 
@@ -12,9 +15,15 @@ export class Blockchain {
     }
 
     addBlock(block: Block) {
+        console.log('Adding block', block);
+        this.loggingService.log('BCS', 'Adding block');
         block.previousHash = this.getLastBlock().hash;
         block.hash = block.getHash();
+        block.mine(this.difficulty);
         this.chain.push(Object.freeze(block));
+        console.log('Block added', block);
+
+        this.loggingService.log('BCS', 'Block added');
     }
 
 
