@@ -3,7 +3,7 @@ import { Block } from "./block.class";
 
 export class Blockchain {
     chain: Array<any>;
-    difficulty = 3; // Not higher than 5
+    difficulty = 2; // Not higher than 5
     loggingService: LoggingService;
     constructor(loggingService) {
         this.loggingService = loggingService;
@@ -14,16 +14,19 @@ export class Blockchain {
         return this.chain[this.chain.length - 1];
     }
 
-    addBlock(block: Block) {
+    async addBlock(block: Block, author?: string) {
         console.log('Adding block', block);
-        this.loggingService.log('BCS', 'Adding block');
         block.previousHash = this.getLastBlock().hash;
         block.hash = block.getHash();
-        block.mine(this.difficulty);
-        this.chain.push(Object.freeze(block));
-        console.log('Block added', block);
+        this.loggingService.log(author || 'BCS', 'Mining block');
+        try {
+            let time = await block.mine(this.difficulty);
+            this.chain.push(Object.freeze(block));
+            console.log('Block added', block);
+            this.loggingService.log(author || 'BCS', `Block found after ${time}ms`);
+        } catch(e) {
 
-        this.loggingService.log('BCS', 'Block added');
+        }
     }
 
 
