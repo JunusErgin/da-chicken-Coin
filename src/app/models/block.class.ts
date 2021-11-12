@@ -27,7 +27,6 @@ export class Block {
         let start = Date.now();
         return new Promise((resolve, reject) => {
             let interval = setInterval(() => {
-
                 if (this.kill) {
                     clearInterval(interval);
                     reject('Killed after ' + (Date.now() - start));

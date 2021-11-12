@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MiningNode } from '../models/mining-node.class';
-import { NodeServiceService } from '../node-service.service';
+import { NodeServiceService } from '../services/node-service.service';
 import { BlockchainService } from '../services/blockchain.service';
 import { LoggingService } from '../services/logging.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-section-nodes',
@@ -13,7 +14,10 @@ export class SectionNodesComponent implements OnInit {
   nodes = [];
 
 
-  constructor(public ns: NodeServiceService, private ls: LoggingService, private bc: BlockchainService) {
+  constructor(public ns: NodeServiceService, 
+    private ls: LoggingService, 
+    private bc: BlockchainService,
+    private notificationService:NotificationService) {
 
    }
 
@@ -22,8 +26,8 @@ export class SectionNodesComponent implements OnInit {
   }
 
   initNodes(){
-    this.nodes.push(new MiningNode('Junus', this.ls, this.bc));
-    this.nodes.push(new MiningNode('Manuel', this.ls, this.bc));
+    this.nodes.push(new MiningNode('Junus', this.ls, this.bc, this.notificationService));
+    this.nodes.push(new MiningNode('Manuel', this.ls, this.bc, this.notificationService));
   }
 
 }
