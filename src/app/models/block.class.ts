@@ -14,6 +14,29 @@ export class Block {
         this.hash = this.getHash();
     }
 
+    private resolveTransactions() {
+        let transactions: any = this.data['transactions'] || [];
+        transactions.forEach(t => this.resolveTransaction(t));
+    }
+
+    private resolveTransaction(transaction) {
+        console.log('Resolving transaction', transaction);
+        this.addMoney(transaction.to, transaction.amount);
+    }
+
+    private addMoney(name, amount) {
+        let moneyTable = this.data.moneyTable;
+        let entry = moneyTable.find(e => e.name == name);
+        console.log('name, amount', name, amount);
+        console.log('Updating moneyTable', moneyTable, entry);
+        entry.amount += amount;
+    }
+
+    addMoneyTable(mt) {
+        this.data['moneyTable'] = mt;
+        this.resolveTransactions();
+    }
+
     getHash() {
         return shajs('sha256').update(this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).digest('hex');
     }
@@ -30,7 +53,7 @@ export class Block {
                 if (this.kill) {
                     clearInterval(interval);
                     reject('Killed after ' + (Date.now() - start));
-                }else if (this.hash.startsWith(Array(difficulty + 1).join('0'))) {
+                } else if (this.hash.startsWith(Array(difficulty + 1).join('0'))) {
                     clearInterval(interval);
                     resolve(Date.now() - start);
                 }

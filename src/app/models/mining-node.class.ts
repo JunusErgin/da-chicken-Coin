@@ -56,11 +56,15 @@ export class MiningNode {
     }
 
     async mine() {
-        this.currentBlock = new Block(Date.now(), { from: 'BlockReward', to: this.name, amount: 5 });
+        this.currentBlock = new Block(Date.now(), this.getDefaultBlockData());
         let blockchain = this.blockchainService.blockchain.getValue();
         await blockchain.addBlock(this.currentBlock, this.name);
         if (this.isMining) {
             await this.mine();
         }
+    }
+
+    getDefaultBlockData(){
+        return {transactions: [{ from: 'BlockReward', to: this.name, amount: 5 }]};
     }
 }
