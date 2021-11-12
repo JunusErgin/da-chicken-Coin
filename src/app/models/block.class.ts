@@ -1,4 +1,7 @@
 import * as shajs from 'sha.js';
+
+var BLOCK_ID_COUNTER = 0;
+
 export class Block {
     timestamp: number;
     data: any;
@@ -6,12 +9,14 @@ export class Block {
     hash: string;
     nonce = 0;
     kill = false;
+    id;
 
     constructor(timestamp: number, data?: any) {
         this.timestamp = timestamp || Date.now();
         this.data = data || {};
         this.previousHash = ''; 4
         this.hash = this.getHash();
+        this.id = BLOCK_ID_COUNTER;
     }
 
     private resolveTransactions() {
@@ -34,7 +39,6 @@ export class Block {
 
     addMoneyTable(mt) {
         this.data['moneyTable'] = mt;
-        this.resolveTransactions();
     }
 
     getHash() {
@@ -55,11 +59,13 @@ export class Block {
                     reject('Killed after ' + (Date.now() - start));
                 } else if (this.hash.startsWith(Array(difficulty + 1).join('0'))) {
                     clearInterval(interval);
+                    BLOCK_ID_COUNTER++;
+                    this.resolveTransactions();
                     resolve(Date.now() - start);
                 }
                 this.nonce++;
                 this.hash = this.getHash();
-            }, 100);
+            }, 1000 / 30);
         });
     }
 

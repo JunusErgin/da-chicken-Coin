@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BlockchainService } from '../services/blockchain.service';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
@@ -12,13 +13,22 @@ export class SectionDataComponent implements OnInit, AfterViewInit {
   barChartOptions = {
     responsive: true,
   };
-  barChartLabels = ['Manu', 'Junus', 'Markus', 'Linus', 'Anil', 'Mihai'];
+  barChartLabels = [];
   barChartLegend = true;
   barChartPlugins = [];
 
-  barChartData = [];
+  barChartData = [{
+    data: [],
+    label: 'Vermögen',
+    backgroundColor: [
+      '#ff6384',
+      '#36a2eb',
+      '#cc65fe',
+      '#ffce56'
+    ]
+  }];
 
-  constructor(private ns: NotificationService) {
+  constructor(private bs: BlockchainService) {
     this.subscribeData();
   }
 
@@ -28,20 +38,13 @@ export class SectionDataComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() { }
 
   subscribeData() {
-    // this.ns.moneyTable.subscribe((mt) => {
-    //   this.barChartLabels = mt.map(r => r.name);
-    //   this.barChartData[0] = {
-    //     data: [45, 37, 60, 70, 46, 33], label: 'Vermögen',
-    //     backgroundColor: [
-    //       '#ff6384',
-    //       '#36a2eb',
-    //       '#cc65fe',
-    //       '#ffce56'
-    //     ]
-    //   };
-    // });
+    let blockchain = this.bs.blockchain.getValue();
+    blockchain.latestBlock.subscribe(() => {
+      let data = blockchain.getLastBlock().data;
+      let moneyTable = data['moneyTable'];
+      this.barChartLabels = moneyTable.map(r => r.name);
+      this.barChartData[0].data = moneyTable.map(r => r.amount);
+    });
+
   }
-
-
 }
-

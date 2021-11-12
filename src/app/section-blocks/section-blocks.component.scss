@@ -10,4 +10,6 @@ mat-card {
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex-shrink: 0;
+    margin-bottom: 32px;
 }

@@ -1,5 +1,7 @@
+import { BehaviorSubject } from "rxjs";
 import { LoggingService } from "../services/logging.service";
 import { NotificationService } from "../services/notification.service";
+import { cloneObject } from "../ultils/helpers";
 import { Block } from "./block.class";
 
 const defaultMoneyTable = [
@@ -13,9 +15,10 @@ const defaultMoneyTable = [
 
 export class Blockchain {
     chain: Array<any>;
-    difficulty = 1; // Not higher than 5
+    difficulty = 2; // Not higher than 5
     loggingService: LoggingService;
     notificationService: NotificationService;
+    latestBlock = new BehaviorSubject<Block>(null);
 
     constructor(loggingService, notificationService) {
         this.loggingService = loggingService;
@@ -28,7 +31,7 @@ export class Blockchain {
     }
 
     async addBlock(block: Block, author?: string) {
-        let lastMoneyTable = this.getLastBlock().data['moneyTable'];
+        let lastMoneyTable = cloneObject(this.getLastBlock().data['moneyTable']);
         block.addMoneyTable(lastMoneyTable);
         block.previousHash = this.getLastBlock().hash;
         block.hash = block.getHash();
@@ -36,7 +39,8 @@ export class Blockchain {
             let time = await block.mine(this.difficulty);
             this.notificationService.notifyAll(author, block);
             this.chain.push(Object.freeze(block));
-            this.loggingService.log(author || 'BCS', `Block found after ${time}ms`);
+            this.latestBlock.next(block);
+            this.loggingService.log(author || 'BCS', `Block ${block.id} found after ${time}ms`);
         } catch (e) {
 
         }
